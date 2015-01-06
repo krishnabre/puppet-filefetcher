@@ -15,4 +15,5 @@ class filefetcher::params {
   $target_dir = '/usr/local/bin'
   $user       = 'root'
   $rights     = 'a+x'
+  $redownload = false
 }

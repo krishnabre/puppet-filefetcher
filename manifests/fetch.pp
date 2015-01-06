@@ -26,6 +26,10 @@
 #   The name of the newly created file.
 #   Defaults to: the name of the resource.
 #
+# [*redownload*]
+#   Boolean flag to force redownload if the file already exists.
+#   Defaults to: false
+#
 #
 # == Example:
 #
@@ -68,6 +72,7 @@ define filefetcher::fetch (
   $user       = undef,
   $rights     = undef,
   $filename   = undef
+  $redownload = undef
 ) {
 
   include filefetcher::params
@@ -92,10 +97,16 @@ define filefetcher::fetch (
     default => $filename
   }
 
+  $filefetcher_redownload = $redownload ? {
+    undef   => $::filefetcher::params::redownload,
+    default => $redownload
+  }
+
   wget::fetch { "wget::fetch ${name}":
     source      => $url,
     destination => "${filefetcher_target_dir}/${filefetcher_filename}",
     execuser    => $filefetcher_user,
+    redownload  => $filefetcher_redownload,
   }
 
   exec { "fix permissions ${name}":
