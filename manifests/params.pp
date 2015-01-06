@@ -1,6 +1,7 @@
 # = Class: filefetcher::params
 #
-# This class defines default parameters used by the main module class `filefetcher`.
+# This class defines default parameters used by the main module
+# class `filefetcher`.
 #
 # == Variables:
 #
