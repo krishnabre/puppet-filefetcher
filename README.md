@@ -232,15 +232,21 @@ just to verify if it is working or not.
 
 ## Release Notes
 
+### 0.1.1
+
+* documentation tweaks
+
 ### 0.1.0
 
 * initial release
-* works fine with four attached examples
+* works fine with attached examples
 
 ## To do
 
+* `mkdir -p` if the destination dir does not exist
 * using array of hashes as in `examples/php-common-phars.pp`
 * tests
+* use issues for todo
 
 ## Inspiration
 
