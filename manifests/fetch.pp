@@ -71,7 +71,7 @@ define filefetcher::fetch (
   $target_dir = undef,
   $user       = undef,
   $rights     = undef,
-  $filename   = undef
+  $filename   = undef,
   $redownload = undef
 ) {
 
