@@ -21,12 +21,15 @@
 This module aims to simplify the installation of
 applications that consist of a single file.
 
+## Genesis
+
 I prepared it and tested having PHP Phars in mind, like:
 
-* `phpunit`
-* `composer`
-* `box`
-* `php-cs-fixer`
+* `composer.phar`
+* `phpunit.phar`
+* `box.phar`
+* `php-cs-fixer.phar`
+* `symfony.phar`
 
 ## Module Description
 
@@ -45,11 +48,11 @@ one-file-applications easier.
 
 In general:
 
-* the module downloads a file
+* the module downloads a file to an arbitrary directory
 * sets the owner
 * sets the rights
 
-It can be seen as a sequence of:
+It can be seen as a sequence of three:
 
 * `wget`
 * `chown`
@@ -59,7 +62,7 @@ commands.
 
 ## Setup
 
-### What filefetcher affects
+### What `filefetcher` affects
 
 Module:
 
@@ -76,7 +79,7 @@ The module uses:
 * `maestrodev-wget` puppet module https://github.com/maestrodev/puppet-wget
 * when missing, `wget` is automatically installed by `maestrodev-wget` module
 
-### Beginning with filefetcher
+### Beginning with `filefetcher`
 
 #### System wide install with Puppet
 
@@ -156,7 +159,20 @@ To run it use the following command:
 
     sudo puppet apply examples/box.pp
 
-### Symfony Standard - composer.json file
+### Symfony Installer
+
+Here is `symfony-installer.pp` example:
+
+    # Filename: examples/symfony-installer.pp
+    filefetcher::fetch { 'symfony':
+        url => 'http://symfony.com/installer',
+    }
+
+To run it use the following command:
+
+    sudo puppet apply examples/symfony-installer.pp
+
+### Symfony Standard - `composer.json` file
 
 Here is `symfony-standard-composer-json.pp` example:
 
