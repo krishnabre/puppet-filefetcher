@@ -1,6 +1,6 @@
 {
   "name": "gajdaw-filefetcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Włodzimierz Gajda",
   "summary": "A module to download and install one-file-applications (like phpunit, composer, php-cs-fixer, box).",
   "license": "MIT",
