@@ -37,8 +37,8 @@ like APT, for example:
 
     # These won't work
     #
-    $ sudo apt-get install composer
-    $ sudo apt-get install phpunit
+    sudo apt-get install composer
+    sudo apt-get install phpunit
 
 The `filefetcher` module aims to make installation of
 one-file-applications easier.
@@ -64,7 +64,7 @@ commands.
 Module:
 
 * downloads a file using URL parameter (e.g. `https://getcomposer.org/composer.phar`)
-* saves it under given name (e.g. `composer`) in arbitrary directory (e.g. `/usr/local/bin`)
+* saves it under a given name (e.g. `composer`) in an arbitrary directory (e.g. `/usr/local/bin`)
 * sets the owner (e.g. `root`)
 * sets the rights (e.g. `a+x`)
 
@@ -90,7 +90,7 @@ You may lock the version to avoid using the latest version:
 
 #### System wide install with Git
 
-You may also use git to install the module:
+You may also use `git` to install the module:
 
     mkdir -p /etc/puppet/modules/box
     cd /etc/puppet/modules/box
@@ -102,7 +102,7 @@ To lock the version, use:
 
 ## Usage
 
-The examples are stored under `examples` directory.
+The examples are stored under `examples/` directory.
 
 ### Composer
 
@@ -156,7 +156,24 @@ To run it use the following command:
 
     sudo puppet apply examples/box.pp
 
-### Running binaries
+### Symfony Standard - composer.json file
+
+Here is `symfony-standard-composer-json.pp` example:
+
+    # Filename: examples/symfony-standard-composer-json.pp
+    filefetcher::fetch { 'Symfony Standard composer.json file':
+        filename   => 'composer.json',
+        target_dir => '/tmp',
+        user       => 'vagrant',
+        rights     => '755',
+        url        => 'https://raw.githubusercontent.com/symfony/symfony-standard/2.7/composer.json',
+    }
+
+To run it use the following command:
+
+    sudo puppet apply examples/symfony-standard-composer-json.pp
+
+### Running phar binaries (`phpunit`, `composer`, etc.)
 
 If php is missing, install it with:
 
@@ -171,7 +188,7 @@ Now, you can use the binaries:
 
 ### Uninstall
 
-Currently, to uninstall binaries, you have to use `rm` command:
+Currently, to uninstall files, you have to use `rm` command:
 
     sudo rm /usr/local/bin/composer
     sudo rm /usr/local/bin/phpunit
@@ -197,7 +214,7 @@ When I work on this module I find the following commands indispensable:
     cd some/dir/with/source/code/for/the/module
 
     sudo puppet module list
-    puppet module build .
+    puppet module build
     puppet-lint manifests --no-autoloader_layout-check
     sudo puppet module install pkg/gajdaw-filefetcher-0.1.0.tar.gz
     sudo puppet module uninstall gajdaw-filefetcher
