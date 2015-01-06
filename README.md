@@ -268,6 +268,10 @@ just to verify if it is working or not.
 
 ## Release Notes
 
+### 0.1.2
+
+* parameter `redownload` to force update
+
 ### 0.1.1
 
 * documentation tweaks
