@@ -120,17 +120,37 @@ To run it use the following command:
 
     sudo puppet apply examples/composer.pp
 
+Try to run the above command a number of times:
+
+    sudo puppet apply examples/composer.pp
+    sudo puppet apply examples/composer.pp
+    sudo puppet apply examples/composer.pp
+
+As you can see the file is not downloaded if it already exists.
+You can change this behaviour with `redownload` parameter,
+as described in `phpunit` example.
+
 ### Phpunit
 
 Here is `phpunit.pp` example:
 
     # Filename: examples/phpunit.pp
     filefetcher::fetch { 'phpunit':
-        source => 'https://phar.phpunit.de/phpunit.phar',
+        source     => 'https://phar.phpunit.de/phpunit.phar',
+        redownload => true,
     }
+
+Thanks to `redownload => true` the file `phpunit` will be
+redownloaded even if it exists.
 
 To run it use the following command:
 
+    sudo puppet apply examples/phpunit.pp
+
+Now the file is downloaded every time you run the command:
+
+    sudo puppet apply examples/phpunit.pp
+    sudo puppet apply examples/phpunit.pp
     sudo puppet apply examples/phpunit.pp
 
 ### Php-cs-fixer
