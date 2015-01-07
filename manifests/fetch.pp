@@ -13,11 +13,11 @@
 #   Defaults to: '/usr/local/bin'
 #
 # [*user*]
-#   The owner of the box executable.
+#   The owner of the downloaded file.
 #   Defaults to: 'root'
 #
 # [*rights*]
-#   The rights for the newly created file.
+#   The rights for the downloaded created file.
 #   Defaults to: 'a+x'
 #
 # [*filename*]

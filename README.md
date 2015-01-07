@@ -88,8 +88,8 @@ You may lock the version to avoid using the latest version:
 
 You may also use `git` to install the module:
 
-    mkdir -p /etc/puppet/modules/box
-    cd /etc/puppet/modules/box
+    mkdir -p /etc/puppet/modules/filefetcher
+    cd /etc/puppet/modules/filefetcher
     git clone --depth 1 https://github.com/pro-vagrant/puppet-filefetcher.git .
 
 To lock the version, use:
@@ -125,7 +125,7 @@ file.
 
 ## Limitations
 
-The box was tested on:
+The module was tested on:
 
 * Ubuntu 14.04 / Puppet 3.7
 
