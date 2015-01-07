@@ -99,17 +99,16 @@ To lock the version, use:
 
 The examples are stored under `examples/` directory.
 
-### Symfony Standard - `composer.json` file
+### Symfony Homepage
 
-Here is `symfony-standard-composer-json.pp` example:
-
-    # Filename: examples/symfony-standard-composer-json.pp
-    filefetcher::fetch { 'Symfony Standard composer.json file':
-        filename   => 'composer.json',
+    # Filename: examples/symfony-homepage.pp
+    filefetcher::fetch { 'Symfony Homepage':
+        filename   => 'symfony-homepage',
         target_dir => '/tmp',
         user       => 'vagrant',
-        rights     => '744',
-        url        => 'https://raw.githubusercontent.com/symfony/symfony-standard/2.7/composer.json',
+        rights     => '644',
+        url        => 'http://symfony.com',
+        redownload => true,
     }
 
 To run it use the following command:
@@ -126,8 +125,11 @@ file.
 
 The module was tested on:
 
-* Ubuntu 12.04 / Puppet 3.7
-* Ubuntu 14.04 / Puppet 3.7
+* Ubuntu
+  - 12.04 / Puppet 3.7
+  - 14.04 / Puppet 3.7
+* CentOS
+  - 6.5 / Puppet 3.7
 
 ## Development
 
@@ -190,7 +192,7 @@ The commands to build a module:
 
 All the examples:
 
-    sudo puppet apply examples/symfony-standard-composer-json.pp
+    sudo puppet apply examples/symfony-homepage.pp
 
 ## Inspiration
 

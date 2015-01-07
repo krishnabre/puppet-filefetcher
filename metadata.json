@@ -21,6 +21,12 @@
         "12.04",
         "14.04"
       ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6.5"
+      ]
     }
   ],
   "requirements": [
