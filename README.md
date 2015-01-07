@@ -12,8 +12,7 @@
 5. [Reference](#reference)
 6. [Limitations](#limitations)
 7. [Development](#development)
-8. [Release notes](#release-notes)
-9. [Inspiration](#inspiration)
+8. [Inspiration](#inspiration)
 
 ## Overview
 
@@ -190,26 +189,6 @@ The commands to build a module:
 All the examples:
 
     sudo puppet apply examples/symfony-standard-composer-json.pp
-
-## Release Notes
-
-### 0.1.3
-
-* documentation: this is a general purpose module
-* for PHARS - refer to php_phars module
-
-### 0.1.2
-
-* parameter `redownload` to force update
-
-### 0.1.1
-
-* documentation tweaks
-
-### 0.1.0
-
-* initial release
-* works fine with attached examples
 
 ## Inspiration
 
