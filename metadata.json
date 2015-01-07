@@ -8,10 +8,11 @@
   "project_page": "https://github.com/pro-vagrant/puppet-filefetcher",
   "issues_url": "https://github.com/pro-vagrant/puppet-filefetcher/issues",
   "tags": [
-    "file",
-    "download",
+    "wget",
+    "chown",
     "chmod",
-    "chown"
+    "file",
+    "download"
   ],
   "operatingsystem_support": [
     {
