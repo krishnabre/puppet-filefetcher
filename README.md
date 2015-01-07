@@ -10,20 +10,20 @@
     * [Beginning with filefetcher](#beginning-with-filefetcher)
 4. [Usage](#usage)
 5. [Reference](#reference)
-5. [Limitations](#limitations)
-6. [Development](#development)
-7. [Release notes](#release-notes)
-8. [To do](#to-do)
+6. [Limitations](#limitations)
+7. [Development](#development)
+8. [Release notes](#release-notes)
 9. [Inspiration](#inspiration)
 
 ## Overview
 
-This module aims to simplify the installation of
-applications that consist of a single file.
+This module aims to simplify the three actions `wget + chown + chmod`.
+It helps you to download the files from the net and set
+appropriate the owner and access rights.
 
 ## Genesis
 
-I prepared it and tested having PHP Phars in mind, like:
+I prepared it for PHP Phars, like:
 
 * `composer.phar`
 * `phpunit.phar`
@@ -31,20 +31,13 @@ I prepared it and tested having PHP Phars in mind, like:
 * `php-cs-fixer.phar`
 * `symfony.phar`
 
+But `filefetcher` is a general tool to perform `wget/chown/chmod`.
+
+If you are interested in PHARS, please refer to
+a more specialized
+[puppet-php_phars module](https://forge.puppetlabs.com/gajdaw/php_phars).
+
 ## Module Description
-
-Currently, there are no binary distributions for
-many php command line applications, like `composer`, `phpunit`, etc.
-Thus, you cannot install them using package managers,
-like APT, for example:
-
-    # These won't work
-    #
-    sudo apt-get install composer
-    sudo apt-get install phpunit
-
-The `filefetcher` module aims to make installation of
-one-file-applications easier.
 
 In general:
 
@@ -107,91 +100,6 @@ To lock the version, use:
 
 The examples are stored under `examples/` directory.
 
-### Composer
-
-Here is `composer.pp` example:
-
-    # Filename: examples/composer.pp
-    filefetcher::fetch { 'composer':
-        source => 'https://getcomposer.org/composer.phar',
-    }
-
-To run it use the following command:
-
-    sudo puppet apply examples/composer.pp
-
-Try to run the above command a number of times:
-
-    sudo puppet apply examples/composer.pp
-    sudo puppet apply examples/composer.pp
-    sudo puppet apply examples/composer.pp
-
-As you can see the file is not downloaded if it already exists.
-You can change this behaviour with `redownload` parameter,
-as described in `phpunit` example.
-
-### Phpunit
-
-Here is `phpunit.pp` example:
-
-    # Filename: examples/phpunit.pp
-    filefetcher::fetch { 'phpunit':
-        source     => 'https://phar.phpunit.de/phpunit.phar',
-        redownload => true,
-    }
-
-Thanks to `redownload => true` the file `phpunit` will be
-redownloaded even if it exists.
-
-To run it use the following command:
-
-    sudo puppet apply examples/phpunit.pp
-
-Now the file is downloaded every time you run the command:
-
-    sudo puppet apply examples/phpunit.pp
-    sudo puppet apply examples/phpunit.pp
-    sudo puppet apply examples/phpunit.pp
-
-### Php-cs-fixer
-
-Here is `php-cs-fixer.pp` example:
-
-    # Filename: examples/php-cs-fixer.pp
-    filefetcher::fetch { 'php-cs-fixer':
-        source => 'http://cs.sensiolabs.org/get/php-cs-fixer.phar',
-    }
-
-To run it use the following command:
-
-    sudo puppet apply examples/php-cs-fixer.pp
-
-### Box
-
-Here is `box.pp` example:
-
-    # Filename: examples/box.pp
-    filefetcher::fetch { 'box':
-        source => 'https://github.com/box-project/box2/releases/download/2.5.0/box-2.5.0.phar',
-    }
-
-To run it use the following command:
-
-    sudo puppet apply examples/box.pp
-
-### Symfony Installer
-
-Here is `symfony-installer.pp` example:
-
-    # Filename: examples/symfony-installer.pp
-    filefetcher::fetch { 'symfony':
-        url => 'http://symfony.com/installer',
-    }
-
-To run it use the following command:
-
-    sudo puppet apply examples/symfony-installer.pp
-
 ### Symfony Standard - `composer.json` file
 
 Here is `symfony-standard-composer-json.pp` example:
@@ -201,35 +109,13 @@ Here is `symfony-standard-composer-json.pp` example:
         filename   => 'composer.json',
         target_dir => '/tmp',
         user       => 'vagrant',
-        rights     => '755',
+        rights     => '744',
         url        => 'https://raw.githubusercontent.com/symfony/symfony-standard/2.7/composer.json',
     }
 
 To run it use the following command:
 
     sudo puppet apply examples/symfony-standard-composer-json.pp
-
-### Running phar binaries (`phpunit`, `composer`, etc.)
-
-If php is missing, install it with:
-
-    sudo apt-get install php5 -y
-
-Now, you can use the binaries:
-
-    phpunit --version
-    composer --version
-    php-cs-fixer --version
-    box --version
-
-### Uninstall
-
-Currently, to uninstall files, you have to use `rm` command:
-
-    sudo rm /usr/local/bin/composer
-    sudo rm /usr/local/bin/phpunit
-    sudo rm /usr/local/bin/php-cs-fixer
-    sudo rm /usr/local/bin/box
 
 ## Reference
 
@@ -245,28 +131,72 @@ The box was tested on:
 
 ## Development
 
-When I work on this module I find the following commands indispensable:
+The best method I have found so far to work on Puppet modules is:
 
-    cd some/dir/with/source/code/for/the/module
+* keep all modules in a single directory of your host (`host/some/dir`)
+* create a Vagrant env in the dir that contains all the modules
+
+
+```
+    .
+    ├── puppet-filefetcher
+    │   ├── examples
+    │   ├── Gemfile
+    │   ├── LICENSE
+    │   ├── manifests
+    │   ├── metadata.json
+    │   ├── pkg
+    │   ├── Rakefile
+    │   ├── README.md
+    │   ├── spec
+    │   ├── tests
+    │   └── tmp
+    ├── puppet-php_phars
+    │   ├── examples
+    │   ├── Gemfile
+    │   ├── LICENSE
+    │   ├── manifests
+    │   ├── metadata.json
+    │   ├── Rakefile
+    │   ├── README.md
+    │   ├── spec
+    │   └── tests
+    └── Vagrantfile
+```
+
+Then create symbolic links to modules:
+
+    sudo ln -s /vagrant/puppet-filefetcher /etc/puppet/modules/filefetcher
+
+Working this way you can test the module without:
+
+* building
+* installing
+* uploading to the Puppet Forge
+
+The command to check CS:
+
+    puppet-lint manifests --no-autoloader_layout-check
+
+The commands to build a module:
+
+    rm -rf pkg/
+    puppet module build
 
     sudo puppet module list
-    puppet module build
-    puppet-lint manifests --no-autoloader_layout-check
-    sudo puppet module install pkg/gajdaw-filefetcher-0.1.0.tar.gz
+    sudo puppet module install pkg/gajdaw-filefetcher-0.1.2.tar.gz
     sudo puppet module uninstall gajdaw-filefetcher
 
-    sudo puppet apply examples/phpunit.pp
-    sudo puppet apply examples/composer.pp
-    sudo puppet apply examples/php-cs-fixer.pp
-    sudo puppet apply examples/box.pp
+All the examples:
+
     sudo puppet apply examples/symfony-standard-composer-json.pp
 
-    sudo puppet apply examples/php-common-phars.pp
-
-Using them I don't have to upload the module to the Puppet Forge
-just to verify if it is working or not.
-
 ## Release Notes
+
+### 0.1.3
+
+* documentation: this is a general purpose module
+* for PHARS - refer to php_phars module
 
 ### 0.1.2
 
@@ -280,13 +210,6 @@ just to verify if it is working or not.
 
 * initial release
 * works fine with attached examples
-
-## To do
-
-* `mkdir -p` if the destination dir does not exist
-* using array of hashes as in `examples/php-common-phars.pp`
-* tests
-* use issues for todo
 
 ## Inspiration
 

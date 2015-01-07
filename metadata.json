@@ -2,7 +2,7 @@
   "name": "gajdaw-filefetcher",
   "version": "0.1.2",
   "author": "Włodzimierz Gajda",
-  "summary": "A module to download and install one-file-applications (like phpunit, composer, php-cs-fixer, box).",
+  "summary": "A module to download, chown and chmod files.",
   "license": "MIT",
   "source": "https://github.com/pro-vagrant/puppet-filefetcher",
   "project_page": "https://github.com/pro-vagrant/puppet-filefetcher",
@@ -11,13 +11,7 @@
     "file",
     "download",
     "chmod",
-    "chown",
-    "php",
-    "phar",
-    "composer",
-    "phpunit",
-    "php-cs-fixer",
-    "box"
+    "chown"
   ],
   "operatingsystem_support": [
     {
@@ -40,4 +34,3 @@
     }
   ]
 }
-

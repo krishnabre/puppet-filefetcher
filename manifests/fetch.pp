@@ -1,8 +1,6 @@
 # == Define: filefetcher
 #
-# The class to download files and set ownership/rights.
-# Developed for one-file-applications
-# like composer.phar, phpunit.phar, etc.
+# The defined resource to download files and set ownership/rights.
 #
 # === Parameters
 #
@@ -39,21 +37,13 @@
 #         url => 'https://phar.phpunit.de/phpunit.phar',
 #     }
 #
-#
-# Installing composer in a different directory:
-#
-#     filefetcher::fetch { 'composer':
-#         url     => 'https://getcomposer.org/composer.phar',
-#         target_dir => '/tmp',
-#     }
-#
 # Copying Symfony Standard composer.json file:
 #
 #  filefetcher::fetch { 'Symfony Standard composer.json file':
 #      filename   => 'composer.json',
 #      target_dir => '/tmp',
 #      owner      => 'vagrant',
-#      rights     => '755'
+#      rights     => '644'
 #      url        => 'https://raw.githubusercontent.com/symfony/symfony-standard/2.7/composer.json',
 #  }
 #
