@@ -1,6 +1,6 @@
 {
   "name": "gajdaw-filefetcher",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "author": "Włodzimierz Gajda",
   "summary": "A module to download, chown and chmod files.",
   "license": "MIT",
