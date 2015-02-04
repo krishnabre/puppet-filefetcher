@@ -89,11 +89,11 @@ You may also use `git` to install the module:
 
     mkdir -p /etc/puppet/modules/filefetcher
     cd /etc/puppet/modules/filefetcher
-    git clone --depth 1 https://github.com/pro-vagrant/puppet-filefetcher.git .
+    git clone --depth 1 https://github.com/puppet-by-examples/puppet-filefetcher.git .
 
 To lock the version, use:
 
-    git clone --depth 1 --branch v0.1.0 https://github.com/pro-vagrant/puppet-filefetcher.git .
+    git clone --depth 1 --branch v0.1.0 https://github.com/puppet-by-examples/puppet-filefetcher.git .
 
 ## Usage
 
@@ -118,7 +118,7 @@ To run it use the following command:
 ## Reference
 
 The complete list of parameters is available in
-[`manifests/fetch.pp`](https://github.com/pro-vagrant/puppet-filefetcher/blob/master/manifests/fetch.pp)
+[`manifests/fetch.pp`](https://github.com/puppet-by-examples/puppet-filefetcher/blob/master/manifests/fetch.pp)
 file.
 
 ## Limitations

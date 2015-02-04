@@ -4,9 +4,9 @@
   "author": "Włodzimierz Gajda",
   "summary": "A module to download, chown and chmod files.",
   "license": "MIT",
-  "source": "https://github.com/pro-vagrant/puppet-filefetcher",
-  "project_page": "https://github.com/pro-vagrant/puppet-filefetcher",
-  "issues_url": "https://github.com/pro-vagrant/puppet-filefetcher/issues",
+  "source": "https://github.com/puppet-by-examples/puppet-filefetcher",
+  "project_page": "https://github.com/puppet-by-examples/puppet-filefetcher",
+  "issues_url": "https://github.com/puppet-by-examples/puppet-filefetcher/issues",
   "tags": [
     "wget",
     "chown",
